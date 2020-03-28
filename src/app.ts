@@ -1,6 +1,7 @@
 import * as bodyParser from "body-parser";
 import express, { Express } from "express";
-import { UsersModule } from "./users/init";
+import { SessionModule } from "./modules/sessions/init";
+import { UsersModule } from "./modules/users/init";
 
 class App {
 
@@ -18,6 +19,7 @@ class App {
 
     private initModules(): void {
         const userModule = new UsersModule(this.app);
+        const sessionModule = new SessionModule(this.app);
     }
 }
 

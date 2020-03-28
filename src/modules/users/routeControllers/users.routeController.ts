@@ -11,7 +11,7 @@ export class UsersRouteController {
 
     public getUsers = async (req: Request, res: Response) => {
         try {
-            console.log("Get user");
+            console.log("Get users");
             const users = await this.userBusinessController.getUsers();
             return res.status(200).send(users);
         } catch (error) {

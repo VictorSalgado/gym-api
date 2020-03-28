@@ -1,8 +1,10 @@
+import { User } from "../models/users";
+
 export class UsersRepository {
 
-    public async getUsers() {
+    public async getUsers(): Promise<User[]> {
 
-        const mockUsers = [
+        const mockUsers: User[] = [
             {
                 mail: "edu.blanco@test.com",
                 name: "eduBlanco",
