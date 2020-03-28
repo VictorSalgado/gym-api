@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from "uuid";
+
 export class User {
 
     public readonly userId: string;
@@ -6,9 +8,9 @@ export class User {
     public password: string;
     public role: string;
 
-    constructor(userId: string, name: string, mail: string, password: string, role: string) {
+    constructor(name: string, mail: string, password: string, role: string) {
 
-        this.userId = userId;
+        this.userId = uuidv4();
         this.name = name;
         this.mail = mail;
         this.password = password;

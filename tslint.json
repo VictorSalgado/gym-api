@@ -11,7 +11,8 @@
         "no-console": [
             true,
             "warning"
-        ]
+        ],
+        "no-unused-expression": true
     },
     "rulesDirectory": []
 }

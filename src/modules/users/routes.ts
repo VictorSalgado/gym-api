@@ -12,5 +12,7 @@ export class Routes {
 
     private configureRoutes(app: Express) {
         app.route("/users").get(this.routeController.getUsers);
+        app.route("/users/:userId").get(this.routeController.getUserById);
+        app.route("/users").post(this.routeController.addUser);
     }
 }
