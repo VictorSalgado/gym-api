@@ -1,5 +1,5 @@
-import {Request, Response} from "express";
-import {UsersBusinessController} from "../businessControllers/users.businessController";
+import { Request, Response } from "express";
+import { UsersBusinessController } from "../businessControllers/users.businessController";
 import { User } from "../models/users";
 
 export class UsersRouteController {
@@ -15,7 +15,7 @@ export class UsersRouteController {
             const users = await this.userBusinessController.getUsers();
             return res.status(200).send(users);
         } catch (error) {
-            return res.status(400).send({message: error});
+            return res.status(400).send({ message: error });
         }
     }
 
@@ -26,7 +26,7 @@ export class UsersRouteController {
 
             return res.status(200).send(user);
         } catch (error) {
-            return res.status(400).send({message: error});
+            return res.status(400).send({ message: error });
         }
     }
 
@@ -35,15 +35,15 @@ export class UsersRouteController {
 
             const username = req.body.username;
             const mail = req.body.mail;
-            const password  = req.body.password;
+            const password = req.body.password;
             const role = req.body.role;
 
-            if (!username) { return res.status(400).send({message: "USERNAME_IS_MANDATORY"}); }
+            if (!username) { return res.status(400).send({ message: "USERNAME_IS_MANDATORY" }); }
 
             const newUser = await this.userBusinessController.createUser(new User(username, mail, password, role));
             return res.status(200).send(newUser);
         } catch (error) {
-            return res.status(400).send({message: error});
+            return res.status(400).send({ message: error });
         }
     }
 }
