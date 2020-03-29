@@ -2,7 +2,7 @@ import Express from "express";
 import { ExercisesRouteController } from "./routeControllers/exercises.routeController";
 import { Routes } from "./routes";
 
-export class UsersModule {
+export class ExerciseModule {
 
     public routes: Routes;
 

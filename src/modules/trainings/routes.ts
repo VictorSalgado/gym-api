@@ -11,7 +11,7 @@ export class Routes {
     }
 
     private configureRoutes(app: Express) {
-        app.routes("/trainings").get(this.routeController.getTrainings);
-        app.routes("/trainings/:type").get(this.routeController.getTrainingsByType);
+        app.route("/trainings").get(this.routeController.getTrainings);
+        app.route("/trainings/:type").get(this.routeController.getTrainingsByType);
     }
 }
