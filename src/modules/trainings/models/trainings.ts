@@ -1,4 +1,4 @@
-import { Excercise } from "../../exercises/models/exercises";
+import { Exercise } from "../../exercises/models/exercises";
 import { User } from "../../users/models/users";
 
 export enum TrainingType {
@@ -11,11 +11,11 @@ export class Training {
 
     public trainingId: string;
     public type: TrainingType;
-    public warmUp: Excercise[];
-    public wod: Excercise[];
+    public warmUp: Exercise[];
+    public wod: Exercise[];
     public createdBy: User;
 
-    constructor(trainingId: string, type: TrainingType, warmUp: Excercise[], wod: Excercise[], createdBy: User) {
+    constructor(trainingId: string, type: TrainingType, warmUp: Exercise[], wod: Exercise[], createdBy: User) {
 
         this.trainingId = trainingId;
         this.type = type;

@@ -13,9 +13,9 @@ export class User {
     public password: string;
     public role: UserRole;
 
-    constructor(name: string, mail: string, password: string, role: UserRole) {
+    constructor(userId: string, name: string, mail: string, password: string, role: UserRole) {
 
-        this.userId = uuidv4();
+        this.userId = userId ? userId : uuidv4();
         this.name = name;
         this.mail = mail;
         this.password = password;

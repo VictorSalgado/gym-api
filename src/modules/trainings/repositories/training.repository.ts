@@ -1,22 +1,37 @@
+import App from "../../../app";
 import { Training, TrainingType } from "../models/trainings";
 
 export class TrainingRepository {
 
-    public mockTraining: Training[] = [
-        {
-            createdBy: null,
-            trainingId: "1",
-            type: TrainingType.CROSSFIT,
-            warmUp: [],
-            wod: []
-        }
-    ];
-
     public async getTrainings(): Promise<Training[]> {
-        return this.mockTraining;
+
+        const sql = "SELECT * FROM Training;";
+        const params = [];
+
+        return await new Promise((resolve, reject) => {
+            App.database().all(sql, params, (err, rows) => {
+                if (err) {
+                    reject(err);
+                }
+
+                resolve(rows as Training[]);
+            });
+        });
     }
 
     public async getTrainingsByType(type: TrainingType): Promise<Training[]> {
-        return this.mockTraining.filter((training) => training.type === type);
+
+        const sql = "SELECT * FROM Training WHERE type = ?";
+        const params = [type];
+
+        return await new Promise((resolve, reject) => {
+            App.database().all(sql, params, (err, rows) => {
+                if (err) {
+                    reject(err);
+                }
+
+                resolve(rows as Training[]);
+            });
+        });
     }
 }

@@ -55,4 +55,40 @@ export class UsersRepository {
             });
         });
     }
+
+    public async editUser(user: User): Promise<User> {
+
+        const sql = "UPDATE User SET name = ?, mail = ?, password = ?, role = ? WHERE userId = ?";
+        const params = [user.name, user.mail, user.password, user.role, user.userId];
+
+        return await new Promise((resolve, reject) => {
+
+            App.database().run(sql, params, (err, result) => {
+
+                if (err) {
+                    reject(err);
+                }
+
+                resolve(result);
+            });
+        });
+    }
+
+    public async deleteUser(userId: string): Promise<void> {
+
+        const sql = "DELETE FROM User WHERE userId = ?";
+        const params = [userId];
+
+        return await new Promise((resolve, reject) => {
+
+            App.database().run(sql, params, (err, rows) => {
+
+                if (err) {
+                    reject(err);
+                }
+
+                resolve();
+            });
+        });
+    }
 }

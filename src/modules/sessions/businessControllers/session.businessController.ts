@@ -10,6 +10,45 @@ export class SessionBusinessController {
     }
 
     public async getSessions(): Promise<Session[]> {
-        return this.sessionRepository.getSessions();
+        try {
+            return await this.sessionRepository.getSessions();
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+    public async getSessionById(sessionId: string): Promise<Session> {
+        try {
+            return await this.sessionRepository.getSessionById(sessionId);
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+    public async addSession(session: Session): Promise<Session> {
+        try {
+            await this.sessionRepository.createSession(session);
+            return session;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+    public async editSession(session: Session): Promise<Session> {
+        try {
+            await this.sessionRepository.editSession(session);
+            return session;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+    public async deleteSession(sessionId: string): Promise<Session> {
+        try {
+            await this.sessionRepository.deleteSession(sessionId);
+            return;
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 }
