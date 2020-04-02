@@ -21,7 +21,7 @@ export class SessionsRepository {
 
     public async getSessionById(sessionId: string): Promise<Session> {
 
-        const sql = "SELECT * FROM Session WHERE sessionId = ?";
+        const sql = "SELECT * FROM Session WHERE session_id = ?";
         const params = [sessionId];
 
         return await new Promise((resolve, reject) => {
@@ -39,7 +39,7 @@ export class SessionsRepository {
 
     public async createSession(session: Session): Promise<Session> {
 
-        const sql = "INSERT INTO User (sessionId, place, date, training, coach) VALUES (?,?,?,?,?);";
+        const sql = "INSERT INTO User (session_id, place, date, training, coach) VALUES (?,?,?,?,?);";
         const params = [session.sessionId, session.place, session.date, session.training, session.coach];
 
         return await new Promise((resolve, reject) => {
@@ -55,9 +55,9 @@ export class SessionsRepository {
         });
     }
 
-    public async editSession(session: Session): Promise<Session> {
+    public async updateSession(session: Session): Promise<Session> {
 
-        const sql = "UPDATE Session SET training = ?, date = ?, coach = ?, place = ? WHERE sessionId = ?";
+        const sql = "UPDATE Session SET training = ?, date = ?, coach = ?, place = ? WHERE session_id = ?";
         const params = [session.training, session.date, session.coach, session.place, session.sessionId];
 
         return await new Promise((resolve, reject) => {
@@ -75,7 +75,7 @@ export class SessionsRepository {
 
     public async deleteSession(sessionId: string): Promise<void> {
 
-        const sql = "DELETE FROM Session WHERE userId = ?";
+        const sql = "DELETE FROM Session WHERE user_id = ?";
         const params = [sessionId];
 
         return await new Promise((resolve, reject) => {

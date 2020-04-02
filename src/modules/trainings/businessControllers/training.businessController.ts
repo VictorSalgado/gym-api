@@ -16,4 +16,31 @@ export class TrainingBusinessController {
     public async getTrainingsByType(type: TrainingType): Promise<Training[]> {
         return this.trainingRepository.getTrainingsByType(type);
     }
+
+    public async createTraining(training: Training): Promise<Training> {
+        try {
+            await this.trainingRepository.createTraining(training);
+            return training;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+    public async updateTraining(training: Training): Promise<Training> {
+        try {
+            await this.trainingRepository.updateTraining(training);
+            return training;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+    public async deleteUser(trainingId: string): Promise<void> {
+        try {
+            await this.trainingRepository.deleteTraining(trainingId);
+            return;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
 }

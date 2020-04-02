@@ -25,7 +25,7 @@ export class SessionBusinessController {
         }
     }
 
-    public async addSession(session: Session): Promise<Session> {
+    public async createSession(session: Session): Promise<Session> {
         try {
             await this.sessionRepository.createSession(session);
             return session;
@@ -34,9 +34,9 @@ export class SessionBusinessController {
         }
     }
 
-    public async editSession(session: Session): Promise<Session> {
+    public async updateSession(session: Session): Promise<Session> {
         try {
-            await this.sessionRepository.editSession(session);
+            await this.sessionRepository.updateSession(session);
             return session;
         } catch (error) {
             throw new Error(error);

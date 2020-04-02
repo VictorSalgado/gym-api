@@ -36,7 +36,7 @@ export class SessionRouteController {
 
             if (!name) { return res.status(400).send({ message: "USERNAME_IS_MANDATORY" }); }
 
-            const newSession = await this.sessionBusinessController.addSession(
+            const newSession = await this.sessionBusinessController.createSession(
                 new Session(null, req.body.date, req.body.coach, req.body.place, req.body.training));
             return res.status(200).send(newSession);
         } catch (error) {
@@ -50,7 +50,7 @@ export class SessionRouteController {
             if (req.params.sessionId !== req.body.sessionId) {
                 return res.status(400).send({ message: "SESSION_ID_NOT_MATCH" });
             } else {
-                const session = await this.sessionBusinessController.editSession(
+                const session = await this.sessionBusinessController.updateSession(
                     new Session(req.body.sessionId, req.body.date, req.body.coach, req.body.place,
                         req.body.training)
                 );

@@ -21,7 +21,7 @@ export class ExercisesRepository {
 
     public async getExerciseById(exerciseId: string): Promise<Exercise> {
 
-        const sql = "SELECT * FROM Exercise WHERE exerciseId = ?;";
+        const sql = "SELECT * FROM Exercise WHERE exercise_id = ?;";
         const params = [exerciseId];
 
         return await new Promise((resolve, reject) => {
@@ -37,7 +37,7 @@ export class ExercisesRepository {
 
     public async createExercise(exercise: Exercise): Promise<Exercise> {
 
-        const sql = "INSERT INTO Exercise (exerciseId, series, reps, weight, time, name, description, image, video) " +
+        const sql = "INSERT INTO Exercise (exercise_id, series, reps, weight, time, name, description, image, video) " +
             "VALUES (?,?,?,?,?,?,?,?,?);";
         const params = [exercise.exerciseId, exercise.series, exercise.reps, exercise.weight, exercise.time,
             exercise.time, exercise.name, exercise.description, exercise.image, exercise.video];
@@ -58,7 +58,7 @@ export class ExercisesRepository {
     public async updateExercise(exercise: Exercise): Promise<Exercise> {
 
         const sql = "UPDATE Exercise SET series = ? AND reps = ? AND weight = ? AND time = ? AND " +
-            "name = ? AND description = ? AND image = ? AND video = ? WHERE exerciseId = ?;";
+            "name = ? AND description = ? AND image = ? AND video = ? WHERE exercise_id = ?;";
         const params = [exercise.series, exercise.reps, exercise.weight, exercise.time,
             exercise.name, exercise.description, exercise.image, exercise.video];
 
@@ -75,7 +75,7 @@ export class ExercisesRepository {
 
     public async deleteExercise(exerciseId: string): Promise<void> {
 
-        const sql = "DELETE FROM Exercise WHERE exerciseId = ?;";
+        const sql = "DELETE FROM Exercise WHERE exercise_id = ?;";
         const params = [exerciseId];
 
         return await new Promise((resolve, reject) => {
