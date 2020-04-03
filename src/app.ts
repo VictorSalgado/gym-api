@@ -1,5 +1,7 @@
 import * as bodyParser from "body-parser";
+import "dotenv/config";
 import express, { Express } from "express";
+import * as jwt from "jsonwebtoken";
 import { ExerciseModule } from "./modules/exercises/init";
 import { SessionModule } from "./modules/sessions/init";
 import { TrainingModule } from "./modules/trainings/init";
@@ -21,6 +23,7 @@ class App {
     }
 
     private config(): void {
+        this.app.set("APP_KEY", process.env.ACCESS_TOKEN);
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: false }));
     }

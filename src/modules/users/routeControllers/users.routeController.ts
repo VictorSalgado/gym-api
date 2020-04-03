@@ -10,6 +10,17 @@ export class UsersRouteController {
         this.userBusinessController = userBusinessController;
     }
 
+    public login = async (req: Request, res: Response) => {
+        try {
+            const { name, password } = req.body;
+
+            const result = await this.userBusinessController.login(name, password);
+            return res.status(200).send(result);
+        } catch (error) {
+            return res.status(400).send({ message: error });
+        }
+    }
+
     public getUsers = async (req: Request, res: Response) => {
         try {
             const users = await this.userBusinessController.getUsers();
@@ -33,16 +44,13 @@ export class UsersRouteController {
     public addUser = async (req: Request, res: Response) => {
         try {
 
-            const name = req.body.name;
-            const mail = req.body.mail;
-            const password = req.body.password;
-            const role = req.body.role;
+            const { name, mail, password, role } = req.body;
 
             if (!name) { return res.status(400).send({ message: "USERNAME_IS_MANDATORY" }); }
 
             const newUser = await this.userBusinessController.createUser(
                 new User(null, name, mail, password, role));
-            return res.status(200).send(newUser);
+            return res.status(201).send(newUser);
         } catch (error) {
             return res.status(400).send({ message: error.toString() });
         }
@@ -52,14 +60,14 @@ export class UsersRouteController {
         try {
 
             if (req.params.userId !== req.body.userId) {
-                return res.status(400).send({message: "USER_ID_NOT_MATCH"});
+                return res.status(400).send({ message: "USER_ID_NOT_MATCH" });
             } else {
                 const user = await this.userBusinessController.editUser(
                     new User(req.body.userId, req.body.name, req.body.mail, req.body.password, req.body.role));
                 return res.status(200).send(user);
             }
         } catch (error) {
-            return res.status(400).send({message: error});
+            return res.status(400).send({ message: error });
         }
     }
 
@@ -69,7 +77,7 @@ export class UsersRouteController {
             await this.userBusinessController.deleteUser(userId);
             return res.status(200).send();
         } catch (error) {
-            return res.status(400).send({message: error});
+            return res.status(400).send({ message: error });
         }
     }
 }

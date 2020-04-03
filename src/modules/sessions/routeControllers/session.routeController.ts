@@ -38,7 +38,7 @@ export class SessionRouteController {
 
             const newSession = await this.sessionBusinessController.createSession(
                 new Session(null, req.body.date, req.body.coach, req.body.place, req.body.training));
-            return res.status(200).send(newSession);
+            return res.status(201).send(newSession);
         } catch (error) {
             return res.status(400).send({ message: error.toString() });
         }

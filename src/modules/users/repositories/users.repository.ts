@@ -20,6 +20,24 @@ export class UsersRepository {
         });
     }
 
+    public async getUserAuth(name: string, password): Promise<User> {
+
+        const sql = "SELECT * FROM User WHERE name = ? AND password = ?;";
+        const params = [name, password];
+
+        return await new Promise((resolve, reject) => {
+
+            App.database().get(sql, params, (err, rows) => {
+
+                if (err) {
+                    reject(err);
+                }
+
+                resolve(rows as User);
+            });
+        });
+    }
+
     public async getUserById(userId: string): Promise<User> {
 
         const sql = "SELECT * FROM User WHERE user_id = ?";

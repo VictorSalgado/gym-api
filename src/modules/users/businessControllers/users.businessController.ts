@@ -1,3 +1,5 @@
+import "dotenv/config";
+import * as jwt from "jsonwebtoken";
 import { User } from "../models/users";
 import { UsersRepository } from "../repositories/users.repository";
 
@@ -7,6 +9,20 @@ export class UsersBusinessController {
 
     constructor(userRepository: UsersRepository = new UsersRepository()) {
         this.userRepository = userRepository;
+    }
+
+    public async login(username: string, password: string): Promise<any> {
+        try {
+            const user = await this.userRepository.getUserAuth(username, password);
+
+            if (user) {
+                const accessToken = jwt.sign({username: user.name }, process.env.ACCESS_TOKEN);
+                console.log(accessToken);
+                return {accessToken};
+            }
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 
     public async getUsers(): Promise<User[]> {
