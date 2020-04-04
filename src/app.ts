@@ -1,11 +1,12 @@
 import * as bodyParser from "body-parser";
 import "dotenv/config";
-import express, { Express } from "express";
-import * as jwt from "jsonwebtoken";
+import express, { Express, Router } from "express";
+import swaggerUi from "swagger-ui-express";
 import { ExerciseModule } from "./modules/exercises/init";
 import { SessionModule } from "./modules/sessions/init";
 import { TrainingModule } from "./modules/trainings/init";
 import { UsersModule } from "./modules/users/init";
+import * as swaggerDocument from "./swagger.json";
 
 class App {
 
@@ -16,6 +17,7 @@ class App {
         this.config();
         this.initDB();
         this.initModules();
+        this.initSwagger();
     }
 
     public database() {
@@ -23,16 +25,23 @@ class App {
     }
 
     private config(): void {
+
         this.app.set("APP_KEY", process.env.ACCESS_TOKEN);
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: false }));
     }
 
     private initModules(): void {
+
         const userModule = new UsersModule(this.app);
         const sessionModule = new SessionModule(this.app);
         const trianingModule = new TrainingModule(this.app);
         const exerciseModule = new ExerciseModule(this.app);
+    }
+
+    private initSwagger(): void {
+
+        this.app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
     }
 
     private initDB(): void {
