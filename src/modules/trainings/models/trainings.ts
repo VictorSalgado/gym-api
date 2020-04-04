@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import { Exercise } from "../../exercises/models/exercises";
 import { User } from "../../users/models/users";
 
@@ -17,7 +18,7 @@ export class Training {
 
     constructor(trainingId: string, type: TrainingType, warmUp: Exercise[], wod: Exercise[], createdBy: User) {
 
-        this.trainingId = trainingId;
+        this.trainingId = trainingId ? trainingId : uuidv4();
         this.type = type;
         this.warmUp = warmUp;
         this.wod = wod;

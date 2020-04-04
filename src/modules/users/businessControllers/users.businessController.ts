@@ -13,13 +13,27 @@ export class UsersBusinessController {
 
     public async login(username: string, password: string): Promise<any> {
         try {
+            const result =  { code: null, message: null };
             const user = await this.userRepository.getUserAuth(username, password);
 
             if (user) {
                 const accessToken = jwt.sign({username: user.name }, process.env.ACCESS_TOKEN);
-                console.log(accessToken);
-                return {accessToken};
+
+                if (accessToken) {
+                    result.code = 200;
+                    result.message = {accessToken};
+                } else {
+                    result.code = 400;
+                    result.message = "AUTH_ERROR";
+                }
             }
+
+            if (!user) {
+                result.code = 400;
+                result.message = "USERNAME_OR_PASSWORD_INCORRECT";
+            }
+
+            return result;
         } catch (error) {
             throw new Error(error);
         }

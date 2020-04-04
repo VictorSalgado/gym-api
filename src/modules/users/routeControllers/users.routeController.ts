@@ -15,7 +15,7 @@ export class UsersRouteController {
             const { name, password } = req.body;
 
             const result = await this.userBusinessController.login(name, password);
-            return res.status(200).send(result);
+            return res.status(result.code).send(result.message);
         } catch (error) {
             return res.status(400).send({ message: error });
         }

@@ -13,5 +13,8 @@ export class Routes {
     private configureRoutes(app: Express) {
         app.route("/trainings").get(this.routeController.getTrainings);
         app.route("/trainings/:type").get(this.routeController.getTrainingsByType);
+        app.route("/trainings").post(this.routeController.addTraining);
+        app.route("/trainings/:trainingId").patch(this.routeController.editTraining);
+        app.route("/trainings/:trainingId").delete(this.routeController.deleteTraining);
     }
 }

@@ -35,7 +35,7 @@ export class TrainingBusinessController {
         }
     }
 
-    public async deleteUser(trainingId: string): Promise<void> {
+    public async deleteTraining(trainingId: string): Promise<void> {
         try {
             await this.trainingRepository.deleteTraining(trainingId);
             return;
