@@ -74,7 +74,7 @@ export class UsersRepository {
         });
     }
 
-    public async editUser(user: User): Promise<User> {
+    public async updateUser(user: User): Promise<User> {
 
         const sql = "UPDATE User SET name = ?, mail = ?, password = ?, role = ? WHERE user_id = ?";
         const params = [user.name, user.mail, user.password, user.role, user.userId];

@@ -13,9 +13,9 @@ export class Routes {
     private configureRoutes(app: Express) {
         app.route("/login").post(this.routeController.login);
         app.route("/users").get(this.routeController.getUsers);
-        app.route("/users").post(this.routeController.addUser);
+        app.route("/users").post(this.routeController.createUser);
         app.route("/users/:userId").get(this.routeController.getUserById);
-        app.route("/users/:userId").patch(this.routeController.editUser);
+        app.route("/users/:userId").patch(this.routeController.updateUser);
         app.route("/users/:userId").delete(this.routeController.deleteUser);
     }
 }

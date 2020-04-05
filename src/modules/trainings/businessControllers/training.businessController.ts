@@ -10,11 +10,27 @@ export class TrainingBusinessController {
     }
 
     public async getTrainings(): Promise<Training[]> {
-        return this.trainingRepository.getTrainings();
+        try {
+            return this.trainingRepository.getTrainings();
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 
     public async getTrainingsByType(type: TrainingType): Promise<Training[]> {
-        return this.trainingRepository.getTrainingsByType(type);
+        try {
+            return this.trainingRepository.getTrainingsByType(type);
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+    public async getTrainingsById(trainingId: string): Promise<Training> {
+        try {
+            return this.trainingRepository.getTrainingsById(trainingId);
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 
     public async createTraining(training: Training): Promise<Training> {

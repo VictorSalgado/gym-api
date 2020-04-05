@@ -12,5 +12,9 @@ export class Routes {
 
     private configureRoutes(app: Express) {
         app.route("/exercises").get(this.routeController.getExercises);
+        app.route("/exercises/:exerciseId").get(this.routeController.getExerciseById);
+        app.route("/exercises").post(this.routeController.createExercise);
+        app.route("/exercises/:exerciseId").patch(this.routeController.updateExercise);
+        app.route("/exercises/:exerciseId").delete(this.routeController.deleteExercise);
     }
 }

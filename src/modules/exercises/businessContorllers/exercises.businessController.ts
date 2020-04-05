@@ -17,7 +17,7 @@ export class ExercisesBusinessController {
         return this.excercisesRepository.getExerciseById(exerciseId);
     }
 
-    public async addExercise(exercise: Exercise): Promise<Exercise> {
+    public async createExercise(exercise: Exercise): Promise<Exercise> {
         return this.excercisesRepository.createExercise(exercise);
     }
 

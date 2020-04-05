@@ -12,8 +12,6 @@ export class SessionRouteController {
 
     public getSessions = async (req: Request, res: Response) => {
         try {
-            console.log("Get sessions");
-
             const sessions = await this.sessionBusinessController.getSessions();
             return res.status(200).send(sessions);
         } catch (error) {
@@ -31,7 +29,7 @@ export class SessionRouteController {
         }
     }
 
-    public addSession = async (req: Request, res: Response) => {
+    public createSession = async (req: Request, res: Response) => {
         try {
 
             if (!name) { return res.status(400).send({ message: "USERNAME_IS_MANDATORY" }); }
@@ -44,7 +42,7 @@ export class SessionRouteController {
         }
     }
 
-    public editSession = async (req: Request, res: Response) => {
+    public updateSession = async (req: Request, res: Response) => {
         try {
 
             if (req.params.sessionId !== req.body.sessionId) {

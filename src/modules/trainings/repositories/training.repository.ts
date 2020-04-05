@@ -35,6 +35,22 @@ export class TrainingRepository {
         });
     }
 
+    public async getTrainingsById(trainingId: string): Promise<Training> {
+
+        const sql = "SELECT * FROM Training WHERE trainingId = ?";
+        const params = [trainingId];
+
+        return await new Promise((resolve, reject) => {
+            App.database().get(sql, params, (err, rows) => {
+                if (err) {
+                    reject(err);
+                }
+
+                resolve(rows as Training);
+            });
+        });
+    }
+
     public async createTraining(training: Training): Promise<Training> {
 
         const sql = "INSERT INTO User (training_id, type, created_by, warm_up, wod) VALUES (?,?,?,?,?);";

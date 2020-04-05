@@ -32,6 +32,78 @@
                     "type": "string"
                 }
             }
+        },
+        "Session": {
+            "type": "object",
+            "properties": {
+                "sessionId": {
+                    "type": "string"
+                },
+                "date": {
+                    "type": "Date"
+                },
+                "coach": {
+                    "type": "User"
+                },
+                "place": {
+                    "type": "string"
+                },
+                "training": {
+                    "type": "training"
+                } 
+            }
+        },
+        "Training": {
+            "type": "object",
+            "properties": {
+                "trainingId": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "warmUP": {
+                    "type": "Exercise[]"
+                },
+                "word": {
+                    "type": "Exercise[]"
+                },
+                "createdBy": {
+                    "type": "User"
+                } 
+            }
+        },
+        "Exercise": {
+            "type": "objetc",
+            "properties": {
+                "exerciseId": {
+                    "type": "string"
+                },
+                "series": {
+                    "type": "number"
+                },
+                "reps": {
+                    "type": "number"
+                },
+                "weight": {
+                    "type": "number"
+                },
+                "time": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "video": {
+                    "type": "string"
+                }
+            }
         }
     },
     "paths": {
@@ -152,13 +224,329 @@
             }
         },
         "/sessions": {
-
+            "get": {
+                "tags": [
+                    "Sessions"
+                ],
+                "summary": "Get all sessions in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Session"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Sessions"
+                ],
+                "summary": "Create a new session in system",
+                "requestBody": {
+                    "description": "Session Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Session"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Session"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/sessions/{sessionId}": {
+            "parameters": [
+                {
+                    "name": "sessionId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the session that we want to match",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Sessions"
+                ],
+                "summary": "Get session filter by id in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Session"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Sessions"
+                ],
+                "summary": "Patch session in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Session"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Sessions"
+                ],
+                "summary": "Delete session by id in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Session"
+                        }
+                    }
+                }
+            }
         },
         "/trainings": {
-
+            "get": {
+                "tags": [
+                    "Trainings"
+                ],
+                "summary": "Get all trainings in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Training"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Trainings"
+                ],
+                "summary": "Create a new training in system",
+                "requestBody": {
+                    "description": "Training Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Training"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Training"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/trainings/{trainingId}": {
+            "parameters": [
+                {
+                    "name": "trainingId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the training that we want to match",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Trainings"
+                ],
+                "summary": "Get training filter by id in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Training"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Trainings"
+                ],
+                "summary": "Patch training in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Training"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Trainings"
+                ],
+                "summary": "Delete training by id in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Training"
+                        }
+                    }
+                }
+            }
+        },
+        "/trainings/{type}": {
+            "parameters": [
+                {
+                    "name": "type",
+                    "in": "path",
+                    "required": true,
+                    "description": "Type of the training that we want to match",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Trainings"
+                ],
+                "summary": "Get training filter by type in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Training"
+                        }
+                    }
+                }
+            }
         },
         "/exercises": {
-
+            "get": {
+                "tags": [
+                    "Exercises"
+                ],
+                "summary": "Get all exercises in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Exercise"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Exercises"
+                ],
+                "summary": "Create a new exercise in system",
+                "requestBody": {
+                    "description": "Exercise Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Exercise"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Exercise"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/exercises/{exerciseId}": {
+            "parameters": [
+                {
+                    "name": "exerciseId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the exercise that we want to match",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Exercises"
+                ],
+                "summary": "Get exercise filter by id in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Exercise"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Exercises"
+                ],
+                "summary": "Patch exercise in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Exercise"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Exercises"
+                ],
+                "summary": "Delete exercise by id in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Exercises"
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export class Exercise {
 
-    public exerciseId: string;
+    public readonly exerciseId: string;
     public series: number;
     public reps: number;
     public weight: number;
@@ -12,11 +12,11 @@ export class Exercise {
     public image: string;
     public video: string;
 
-    constructor(series: number, reps: number, weight: number, time: number,
+    constructor(exerciseId: string, series: number, reps: number, weight: number, time: number,
                 name: string, description: string, image: string, video: string
     ) {
 
-        this.exerciseId = uuidv4();
+        this.exerciseId = exerciseId ? exerciseId : uuidv4();
         this.series = series;
         this.reps = reps;
         this.weight = weight;

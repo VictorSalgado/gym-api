@@ -29,7 +29,17 @@ export class TrainingRouteController {
         }
     }
 
-    public addTraining = async (req: Request, res: Response) => {
+    public getTrainingsById = async (req: Request, res: Response) => {
+        try {
+            const trainingId = TrainingType[req.params.trainingId];
+            const trainingsById = await this.trainingBusinessController.getTrainingsById(trainingId);
+            res.status(200).send(trainingsById);
+        } catch (error) {
+            res.status(400).send({ message: error });
+        }
+    }
+
+    public createTraining = async (req: Request, res: Response) => {
         try {
             const training = new Training(null, req.body.type, req.body.console.warmUp,
                 req.body.wod, req.body.createdBy);
@@ -41,7 +51,7 @@ export class TrainingRouteController {
         }
     }
 
-    public editTraining = async (req: Request, res: Response) => {
+    public updateTraining = async (req: Request, res: Response) => {
         try {
 
             if (req.params.trainingId !== req.body.trainingId) {

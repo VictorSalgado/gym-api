@@ -41,7 +41,7 @@ export class UsersRouteController {
         }
     }
 
-    public addUser = async (req: Request, res: Response) => {
+    public createUser = async (req: Request, res: Response) => {
         try {
 
             const { name, mail, password, role } = req.body;
@@ -56,13 +56,13 @@ export class UsersRouteController {
         }
     }
 
-    public editUser = async (req: Request, res: Response) => {
+    public updateUser = async (req: Request, res: Response) => {
         try {
 
             if (req.params.userId !== req.body.userId) {
                 return res.status(400).send({ message: "USER_ID_NOT_MATCH" });
             } else {
-                const user = await this.userBusinessController.editUser(
+                const user = await this.userBusinessController.updateUser(
                     new User(req.body.userId, req.body.name, req.body.mail, req.body.password, req.body.role));
                 return res.status(200).send(user);
             }

@@ -64,9 +64,9 @@ export class UsersBusinessController {
         }
     }
 
-    public async editUser(user: User): Promise<User> {
+    public async updateUser(user: User): Promise<User> {
         try {
-            await this.userRepository.editUser(user);
+            await this.userRepository.updateUser(user);
             return user;
         } catch (error) {
             throw new Error(error);
