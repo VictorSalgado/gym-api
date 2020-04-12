@@ -1,8 +1,7 @@
 {
     "defaultSeverity": "error",
     "extends": [
-        "tslint:recommended",
-        "plugin:mocha/recommended"
+        "tslint:recommended"
     ],
     "jsRules": {},
     "rules": {

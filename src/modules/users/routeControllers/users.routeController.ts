@@ -36,7 +36,7 @@ export class UsersRouteController {
             const user = await this.userBusinessController.getUserById(userId);
 
             if (!user) {
-                return res.status(404).send({ message: 'NOT_FOUND'});
+                return res.status(404).send({ message: "NOT_FOUND"});
             }
 
             return res.status(200).send(user);

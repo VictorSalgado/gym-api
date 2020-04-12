@@ -1,6 +1,6 @@
 import * as bodyParser from "body-parser";
 import "dotenv/config";
-import express, { Express, Router } from "express";
+import express, { Express } from "express";
 import swaggerUi from "swagger-ui-express";
 import { ExerciseModule } from "./modules/exercises/init";
 import { SessionModule } from "./modules/sessions/init";
