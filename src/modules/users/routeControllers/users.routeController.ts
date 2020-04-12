@@ -35,7 +35,12 @@ export class UsersRouteController {
             const userId = req.params.userId;
             const user = await this.userBusinessController.getUserById(userId);
 
+            if (!user) {
+                return res.status(404).send({ message: 'NOT_FOUND'});
+            }
+
             return res.status(200).send(user);
+
         } catch (error) {
             return res.status(400).send({ message: error });
         }
