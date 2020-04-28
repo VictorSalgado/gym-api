@@ -1,11 +1,11 @@
 import { Training, TrainingType } from "../models/trainings";
-import { TrainingRepository } from "../repositories/training.repository";
+import { SQLiteTrainingRepository } from "../repositories/sqlite.training.repository";
 
 export class TrainingBusinessController {
 
-    private trainingRepository: TrainingRepository;
+    private trainingRepository: SQLiteTrainingRepository;
 
-    constructor(trainigRepository: TrainingRepository = new TrainingRepository()) {
+    constructor(trainigRepository: SQLiteTrainingRepository = new SQLiteTrainingRepository()) {
         this.trainingRepository = trainigRepository;
     }
 
@@ -27,7 +27,7 @@ export class TrainingBusinessController {
 
     public async getTrainingsById(trainingId: string): Promise<Training> {
         try {
-            return this.trainingRepository.getTrainingsById(trainingId);
+            return this.trainingRepository.getTrainingById(trainingId);
         } catch (error) {
             throw new Error(error);
         }

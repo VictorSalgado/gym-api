@@ -1,13 +1,13 @@
 import "dotenv/config";
 import * as jwt from "jsonwebtoken";
 import { User } from "../models/users";
-import { UsersRepository } from "../repositories/users.repository";
+import { SQLiteUsersRepository } from "../repositories/sqlite.users.repository";
 
 export class UsersBusinessController {
 
-    private userRepository: UsersRepository;
+    private userRepository: SQLiteUsersRepository;
 
-    constructor(userRepository: UsersRepository = new UsersRepository()) {
+    constructor(userRepository: SQLiteUsersRepository = new SQLiteUsersRepository()) {
         this.userRepository = userRepository;
     }
 

@@ -1,7 +1,8 @@
 import App from "../../../app";
+import { ITrainingsRepository } from "../interfaces/trainings.repository";
 import { Training, TrainingType } from "../models/trainings";
 
-export class TrainingRepository {
+export class SQLiteTrainingRepository implements ITrainingsRepository {
 
     public async getTrainings(): Promise<Training[]> {
 
@@ -19,6 +20,22 @@ export class TrainingRepository {
         });
     }
 
+    public async getTrainingById(trainingId: string): Promise<Training> {
+
+        const sql = "SELECT * FROM Training WHERE trainingId = ?";
+        const params = [trainingId];
+
+        return await new Promise((resolve, reject) => {
+            App.database().get(sql, params, (err, rows) => {
+                if (err) {
+                    reject(err);
+                }
+
+                resolve(rows as Training);
+            });
+        });
+    }
+
     public async getTrainingsByType(type: TrainingType): Promise<Training[]> {
 
         const sql = "SELECT * FROM Training WHERE type = ?";
@@ -31,22 +48,6 @@ export class TrainingRepository {
                 }
 
                 resolve(rows as Training[]);
-            });
-        });
-    }
-
-    public async getTrainingsById(trainingId: string): Promise<Training> {
-
-        const sql = "SELECT * FROM Training WHERE trainingId = ?";
-        const params = [trainingId];
-
-        return await new Promise((resolve, reject) => {
-            App.database().get(sql, params, (err, rows) => {
-                if (err) {
-                    reject(err);
-                }
-
-                resolve(rows as Training);
             });
         });
     }

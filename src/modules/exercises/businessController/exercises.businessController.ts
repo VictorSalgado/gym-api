@@ -1,11 +1,11 @@
 import { Exercise } from "../models/exercises";
-import { ExercisesRepository } from "../repositories/exercises.repository";
+import { SQLitesExercisesRepository } from "../repositories/sqlite.exercises.repository";
 
 export class ExercisesBusinessController {
 
-    private excercisesRepository: ExercisesRepository;
+    private excercisesRepository: SQLitesExercisesRepository;
 
-    constructor(excercisesRepository: ExercisesRepository = new ExercisesRepository()) {
+    constructor(excercisesRepository: SQLitesExercisesRepository = new SQLitesExercisesRepository()) {
         this.excercisesRepository = excercisesRepository;
     }
 

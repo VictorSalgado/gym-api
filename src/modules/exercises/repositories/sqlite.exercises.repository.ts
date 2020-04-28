@@ -1,7 +1,8 @@
 import App from "../../../app";
+import { IExercisesRepository } from "../interfaces/exercises.repository";
 import { Exercise } from "../models/exercises";
 
-export class ExercisesRepository {
+export class SQLitesExercisesRepository implements IExercisesRepository {
 
     public async getExercises(): Promise<Exercise[]> {
 

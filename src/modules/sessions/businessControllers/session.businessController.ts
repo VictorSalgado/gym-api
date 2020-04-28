@@ -1,11 +1,11 @@
 import { Session } from "../models/sessions";
-import { SessionsRepository } from "../repositories/sessions.repository";
+import { SQLiteSessionsRepository } from "../repositories/sqlite.sessions.repository";
 
 export class SessionBusinessController {
 
-    private sessionRepository: SessionsRepository;
+    private sessionRepository: SQLiteSessionsRepository;
 
-    constructor(userRepository: SessionsRepository = new SessionsRepository()) {
+    constructor(userRepository: SQLiteSessionsRepository = new SQLiteSessionsRepository()) {
         this.sessionRepository = userRepository;
     }
 

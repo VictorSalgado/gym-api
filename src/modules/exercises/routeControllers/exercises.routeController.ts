@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
+import { ExercisesBusinessController } from "../businessController/exercises.businessController";
 import { Exercise } from "../models/exercises";
-import { ExercisesBusinessController } from "./../businessContorllers/exercises.businessController";
 
 export class ExercisesRouteController {
 

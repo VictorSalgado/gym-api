@@ -1,7 +1,8 @@
 import App from "../../../app";
-import { Session } from "./../models/sessions";
+import { ISessionsRepository } from "../interfaces/sessions.repository";
+import { Session } from "../models/sessions";
 
-export class SessionsRepository {
+export class SQLiteSessionsRepository implements ISessionsRepository {
 
     public async getSessions(): Promise<Session[]> {
 

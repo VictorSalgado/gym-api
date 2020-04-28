@@ -1,7 +1,8 @@
 import App from "../../../app";
+import { IUsersRepository } from "../interfaces/users.repository";
 import { User } from "../models/users";
 
-export class UsersRepository {
+export class SQLiteUsersRepository implements IUsersRepository {
 
     public async getUsers(): Promise<User[]> {
 
