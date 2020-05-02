@@ -25,7 +25,7 @@ export class ExercisesBusinessController {
         return this.excercisesRepository.updateExercise(exercise);
     }
 
-    public async deleteExercise(exerciseId: string): Promise<void> {
+    public async deleteExercise(exerciseId: string): Promise<boolean> {
         return this.excercisesRepository.deleteExercise(exerciseId);
     }
 }

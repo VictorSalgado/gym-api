@@ -6,5 +6,5 @@ export interface IExercisesRepository {
     getExercises(): Promise<Exercise[]>;
     getExerciseById(exerciseId: string): Promise<Exercise>;
     updateExercise(exercise: Exercise): Promise<Exercise>;
-    deleteExercise(exerciseId: string): Promise<void>;
+    deleteExercise(exerciseId: string): Promise<boolean>;
 }

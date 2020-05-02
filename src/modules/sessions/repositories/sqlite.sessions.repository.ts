@@ -74,7 +74,7 @@ export class SQLiteSessionsRepository implements ISessionsRepository {
         });
     }
 
-    public async deleteSession(sessionId: string): Promise<void> {
+    public async deleteSession(sessionId: string): Promise<boolean> {
 
         const sql = "DELETE FROM Session WHERE user_id = ?";
         const params = [sessionId];

@@ -2,7 +2,7 @@ import App from "../../../app";
 import { ITrainingsRepository } from "../interfaces/trainings.repository";
 import { Training, TrainingType } from "../models/trainings";
 
-export class SQLiteTrainingRepository implements ITrainingsRepository {
+export class SQLiteTrainingsRepository implements ITrainingsRepository {
 
     public async getTrainings(): Promise<Training[]> {
 
@@ -88,7 +88,7 @@ export class SQLiteTrainingRepository implements ITrainingsRepository {
         });
     }
 
-    public async deleteTraining(trainingId: string): Promise<void> {
+    public async deleteTraining(trainingId: string): Promise<boolean> {
 
         const sql = "DELETE FROM Traing WHERE training_id = ?";
         const params = [trainingId];

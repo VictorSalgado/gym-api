@@ -1,11 +1,11 @@
 import { Training, TrainingType } from "../models/trainings";
-import { SQLiteTrainingRepository } from "../repositories/sqlite.training.repository";
+import { SQLiteTrainingsRepository } from "../repositories/sqlite.training.repository";
 
 export class TrainingBusinessController {
 
-    private trainingRepository: SQLiteTrainingRepository;
+    private trainingRepository: SQLiteTrainingsRepository;
 
-    constructor(trainigRepository: SQLiteTrainingRepository = new SQLiteTrainingRepository()) {
+    constructor(trainigRepository: SQLiteTrainingsRepository = new SQLiteTrainingsRepository()) {
         this.trainingRepository = trainigRepository;
     }
 

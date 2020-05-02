@@ -40,8 +40,8 @@ export class SQLitesExercisesRepository implements IExercisesRepository {
 
         const sql = "INSERT INTO Exercise (exercise_id, series, reps, weight, time, name, description, image, video) " +
             "VALUES (?,?,?,?,?,?,?,?,?);";
-        const params = [exercise.exerciseId, exercise.series, exercise.reps, exercise.weight, exercise.time,
-            exercise.time, exercise.name, exercise.description, exercise.image, exercise.video];
+        const params = [exercise.exerciseId, exercise.series, exercise.reps, exercise.weight,
+            exercise.timeCap, exercise.name, exercise.description, exercise.image, exercise.video];
 
         return await new Promise((resolve, reject) => {
 
@@ -60,7 +60,7 @@ export class SQLitesExercisesRepository implements IExercisesRepository {
 
         const sql = "UPDATE Exercise SET series = ? AND reps = ? AND weight = ? AND time = ? AND " +
             "name = ? AND description = ? AND image = ? AND video = ? WHERE exercise_id = ?;";
-        const params = [exercise.series, exercise.reps, exercise.weight, exercise.time,
+        const params = [exercise.series, exercise.reps, exercise.weight, exercise.timeCap,
             exercise.name, exercise.description, exercise.image, exercise.video];
 
         return await new Promise((resolve, reject) => {
@@ -74,7 +74,7 @@ export class SQLitesExercisesRepository implements IExercisesRepository {
         });
     }
 
-    public async deleteExercise(exerciseId: string): Promise<void> {
+    public async deleteExercise(exerciseId: string): Promise<boolean> {
 
         const sql = "DELETE FROM Exercise WHERE exercise_id = ?;";
         const params = [exerciseId];

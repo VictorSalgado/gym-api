@@ -93,7 +93,7 @@ export class SQLiteUsersRepository implements IUsersRepository {
         });
     }
 
-    public async deleteUser(userId: string): Promise<void> {
+    public async deleteUser(userId: string): Promise<boolean> {
 
         const sql = "DELETE FROM User WHERE user_id = ?";
         const params = [userId];

@@ -4,8 +4,8 @@ export interface ITrainingsRepository {
 
     createTraining(training: Training): Promise<Training>;
     getTrainings(): Promise<Training[]>;
-    getTrainingById(trainingId: string): Promise<Training>;
+    getTrainingById(id: string): Promise<Training>;
     getTrainingsByType(type: TrainingType): Promise<Training[]>;
     updateTraining(training: Training): Promise<Training>;
-    deleteTraining(trainingId: string): Promise<void>;
+    deleteTraining(id: string): Promise<boolean>;
 }
